@@ -17,9 +17,12 @@ FastAPI calls it by default
 for each request, it creates a new session, yields it to the route, and then closes it after the request is done.
 one request = one session, so that all the CRUD operations in that request use the same session
 """
+
+
 @router.post("/", response_model=schemas.UserResponse)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return crud.create_user(db, user)
+
 
 @router.get("/{user_id}")
 def get_user(user_id: int, db: Session = Depends(get_db)):
@@ -28,9 +31,11 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
         return HTTPException(status_code=404, detail="user not found")
     return user
 
+
 @router.get("/")
 def list_users(db: Session = Depends(get_db)):
     return crud.list_users(db)
+
 
 @router.delete("/{user_id}")
 def delete_user(user_id: int, db: Session = Depends(get_db)):

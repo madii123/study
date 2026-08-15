@@ -7,11 +7,10 @@ from routers.user import router as user_router
 from routers.dummy import router as dummy_router
 
 
-
 # delete the tables in the database
 # start from scratch, so that we can test the CRUD operations
 # uncomment the below line to delete the tables in the database
-# Base.metadata.drop_all(bind=engine) 
+# Base.metadata.drop_all(bind=engine)
 
 """
 create the tables in the database
@@ -34,5 +33,3 @@ setup_middleware(app)
 
 app.include_router(user_router, prefix="/users")
 app.include_router(dummy_router, prefix="/dummy")
-
-
